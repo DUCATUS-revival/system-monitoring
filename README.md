@@ -1,12 +1,24 @@
 # Infrastructure Monitoring
 
-## What to monitor
+## What it monitors
 
 - docker events
 - docker logs
 - SSH logs
 - System stats
 - Application specific tests (TBD)
+
+## Installing
+
+### Docker Events Monitor
+
+```bash
+DOCKER_COMPOSE_DIR=location_of_service \
+LOGGING_URL=logging.ducatus.io \
+LOGGING_PORT=9090 \
+templater.sh docker-event-logging.service
+cp docker-event-logging.service /etc/systemd/system/
+```
 
 ## Docker Events
 

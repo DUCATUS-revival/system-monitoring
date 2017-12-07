@@ -1,0 +1,12 @@
+[Unit]
+Description=Logging docker events
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory={{DOCKER_COMPOSE_DIR}}
+ExecStart=/usr/bin/docker-compose logs --json  > /dev/udp/{{LOGGING_URL}}/{{LOGGING_PORT}}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
