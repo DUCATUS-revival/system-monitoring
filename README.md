@@ -4,7 +4,7 @@
 
 - docker events
 - docker logs
-- SSH logs
+- Auth logs
 - System stats
 - Application specific tests (TBD)
 
@@ -16,8 +16,28 @@
 DOCKER_COMPOSE_DIR=location_of_service \
 LOGGING_URL=logging.ducatus.io \
 LOGGING_PORT=9090 \
-templater.sh docker-event-logging.service
-cp docker-event-logging.service /etc/systemd/system/
+./templater.sh docker-event-logging.service > /etc/systemd/system/docker-event-logging.service
+```
+
+NOTE: I didn't create templater.sh
+
+### Docker logs
+
+```bash
+LOGGING_URL=logging.ducatus.io \
+LOGGING_PORT=9095 \
+./templater.sh daemon.json > /etc/docker/daemon.json
+```
+
+Must restart the docker service. Also this solution will only start logging on new containers, not existing ones. Be sure to recreate any containers
+
+### Auth Logs
+
+```bash
+DOCKER_COMPOSE_DIR=location_of_service \
+LOGGING_URL=logging.ducatus.io \
+LOGGING_PORT=9096 \
+./templater.sh auth-log-logging.service > /etc/systemd/system/auth-log-logging.service
 ```
 
 ## Docker Events
