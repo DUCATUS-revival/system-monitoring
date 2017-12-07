@@ -18,6 +18,7 @@ LOGGING_URL=logging.ducatus.io \
 LOGGING_PORT=9090 \
 ./templater.sh docker-event-logging.service > /etc/systemd/system/docker-event-logging.service
 systemctl start docker-event-logging.service
+systemctl enable docker-events-logging.service
 ```
 
 NOTE: I didn't create templater.sh
@@ -32,14 +33,13 @@ LOGGING_PORT=9095 \
 
 Must restart the docker service. Also this solution will only start logging on new containers, not existing ones. Be sure to recreate any containers
 
-### Auth Logs
+### Syslog
 
 ```bash
-DOCKER_COMPOSE_DIR=location_of_service \
 LOGGING_URL=logging.ducatus.io \
-LOGGING_PORT=9096 \
-./templater.sh auth-log-logging.service > /etc/systemd/system/auth-log-logging.service
-systemctl start auth-log-logging.service
+LOGGING_PORT=514 \
+./templater.sh rsyslog.conf > /etc/rsyslog.conf
+systemctl restart rsyslog.conf
 ```
 
 ## Docker Events
