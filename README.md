@@ -17,6 +17,7 @@ DOCKER_COMPOSE_DIR=location_of_service \
 LOGGING_URL=logging.ducatus.io \
 LOGGING_PORT=9090 \
 ./templater.sh docker-event-logging.service > /etc/systemd/system/docker-event-logging.service
+systemctl start docker-event-logging.service
 ```
 
 NOTE: I didn't create templater.sh
@@ -38,6 +39,7 @@ DOCKER_COMPOSE_DIR=location_of_service \
 LOGGING_URL=logging.ducatus.io \
 LOGGING_PORT=9096 \
 ./templater.sh auth-log-logging.service > /etc/systemd/system/auth-log-logging.service
+systemctl start auth-log-logging.service
 ```
 
 ## Docker Events
