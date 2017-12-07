@@ -4,7 +4,7 @@ After=network.target
 
 [Service]
 Type=simple
-ExecStart=/usr/bin/tail -f /var/log/auth.log  > /dev/udp/{{LOGGING_URL}}/{{LOGGING_PORT}}
+ExecStart=/bin/bash -c '/usr/bin/tail -f /var/log/auth.log  > /dev/udp/{{LOGGING_URL}}/{{LOGGING_PORT}}'
 Restart=always
 
 [Install]
