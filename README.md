@@ -39,7 +39,7 @@ Must restart the docker service. Also this solution will only start logging on n
 LOGGING_URL=logging.ducatus.io \
 LOGGING_PORT=514 \
 ./templater.sh rsyslog.conf > /etc/rsyslog.conf
-systemctl restart rsyslog.conf
+systemctl restart rsyslog.service
 ```
 
 ## Docker Events
